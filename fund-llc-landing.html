@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fund LLC — Institutional strategy, on the clock that fits you</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #14171C;
+    --panel: #1B1F26;
+    --panel-2: #21262F;
+    --ivory: #EDE7DC;
+    --ivory-dim: #A9A79C;
+    --brass: #B08D4F;
+    --brass-bright: #D4B571;
+    --day: #5C9A8B;
+    --month: #B5573A;
+    --year: #6B7CA6;
+    --hairline: rgba(237,231,220,0.12);
+    --hairline-strong: rgba(237,231,220,0.22);
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: radial-gradient(ellipse 120% 80% at 50% -10%, #1c2029 0%, var(--bg) 55%);
+    color: var(--ivory);
+    font-family: 'IBM Plex Sans', sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+
+  .wrap{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .eyebrow{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--brass-bright);
+  }
+
+  h1, h2, h3{
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(20,23,28,0.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 20px 0;
+  }
+  .wordmark{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 15px;
+    letter-spacing: 0.14em;
+    font-weight: 500;
+  }
+  .wordmark span{ color: var(--brass-bright); }
+  .nav-links{
+    display:flex;
+    gap: 36px;
+    font-size: 14px;
+    color: var(--ivory-dim);
+  }
+  .nav-links a:hover{ color: var(--ivory); }
+  .nav-cta{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    padding: 10px 20px;
+    border: 1px solid var(--hairline-strong);
+    border-radius: 2px;
+    transition: border-color .2s ease, background .2s ease;
+  }
+  .nav-cta:hover{ border-color: var(--brass); background: rgba(176,141,79,0.08); }
+
+  @media (max-width: 720px){
+    .nav-links{ display:none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 96px 0 80px;
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size: clamp(40px, 5.2vw, 68px);
+    line-height: 1.05;
+    margin: 18px 0 22px;
+    max-width: 11ch;
+  }
+  .hero p{
+    font-size: 17px;
+    color: var(--ivory-dim);
+    max-width: 46ch;
+    margin-bottom: 32px;
+  }
+  .btn-row{ display:flex; gap:16px; flex-wrap: wrap; }
+  .btn{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    padding: 14px 24px;
+    border-radius: 2px;
+    display:inline-flex;
+    align-items:center;
+    gap: 8px;
+  }
+  .btn-primary{
+    background: var(--brass);
+    color: #14171C;
+    font-weight: 500;
+    transition: background .2s ease;
+  }
+  .btn-primary:hover{ background: var(--brass-bright); }
+  .btn-secondary{
+    border: 1px solid var(--hairline-strong);
+    color: var(--ivory);
+    transition: border-color .2s ease;
+  }
+  .btn-secondary:hover{ border-color: var(--brass); }
+
+  .dial-wrap{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .dial-wrap svg{ width: 100%; max-width: 460px; height:auto; }
+
+  .bezel-tick{ stroke: var(--hairline-strong); stroke-width: 1.5; }
+  .bezel-tick.major{ stroke: var(--ivory-dim); stroke-width: 2.5; }
+  .dial-ring{ fill: none; stroke: var(--hairline); stroke-width: 1; }
+  .dial-face{ fill: var(--panel); stroke: var(--hairline-strong); stroke-width: 1; }
+  .sub-face{ fill: var(--panel-2); stroke: var(--hairline-strong); stroke-width: 1; }
+  .sub-label{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    fill: var(--ivory-dim);
+    text-anchor: middle;
+  }
+  .center-pin{ fill: var(--brass-bright); }
+  .hand{ transform-origin: 0px 0px; }
+  .hand-main{ stroke: var(--brass-bright); stroke-width: 2.5; stroke-linecap: round; animation: spin 36s linear infinite; }
+  .hand-day{ stroke: var(--day); stroke-width: 2; stroke-linecap: round; animation: spin 5s linear infinite; }
+  .hand-month{ stroke: var(--month); stroke-width: 2; stroke-linecap: round; animation: spin 14s linear infinite; }
+  .hand-year{ stroke: var(--year); stroke-width: 2; stroke-linecap: round; animation: spin 26s linear infinite; }
+
+  @keyframes spin{ from{ transform: rotate(0deg); } to{ transform: rotate(360deg); } }
+
+  @media (prefers-reduced-motion: reduce){
+    .hand-main, .hand-day, .hand-month, .hand-year{ animation-play-state: paused; }
+  }
+
+  @media (max-width: 860px){
+    .hero{ grid-template-columns: 1fr; padding-top: 56px; }
+    .dial-wrap{ order: -1; margin-bottom: 8px; }
+    .dial-wrap svg{ max-width: 320px; }
+    .hero h1{ max-width: none; }
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding: 88px 0; border-top: 1px solid var(--hairline); }
+  .section-head{ max-width: 640px; margin-bottom: 56px; }
+  .section-head h2{ font-size: clamp(28px, 3.4vw, 40px); margin-top: 14px; }
+  .section-head p{ color: var(--ivory-dim); margin-top: 16px; font-size: 16px; }
+
+  /* ---------- WORLDS ---------- */
+  .worlds{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .world-card{
+    background: var(--panel);
+    border: 1px solid var(--hairline);
+    border-radius: 4px;
+    padding: 32px 28px;
+    display:flex;
+    flex-direction:column;
+    gap: 18px;
+  }
+  .world-icon{ width: 52px; height:52px; }
+  .world-card h3{ font-size: 21px; font-weight: 500; }
+  .world-card .cadence{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .world-card p{ color: var(--ivory-dim); font-size: 15px; }
+  .world-card.day .cadence{ color: var(--day); }
+  .world-card.month .cadence{ color: var(--month); }
+  .world-card.year .cadence{ color: var(--year); }
+  .world-card.day{ border-top: 2px solid var(--day); }
+  .world-card.month{ border-top: 2px solid var(--month); }
+  .world-card.year{ border-top: 2px solid var(--year); }
+
+  @media (max-width: 860px){ .worlds{ grid-template-columns: 1fr; } }
+
+  /* ---------- TWO-SIDED ---------- */
+  .sides{ display:grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .side-card{
+    background: var(--panel);
+    border: 1px solid var(--hairline);
+    border-radius: 4px;
+    padding: 40px 32px;
+  }
+  .side-card svg{ width:40px; height:40px; margin-bottom: 20px; }
+  .side-card h3{ font-size: 23px; margin-bottom: 12px; font-weight: 500;}
+  .side-card p{ color: var(--ivory-dim); font-size: 15px; margin-bottom: 20px; }
+  .side-card a.link{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--brass-bright);
+    border-bottom: 1px solid rgba(212,181,113,0.4);
+    padding-bottom: 2px;
+  }
+
+  @media (max-width: 720px){ .sides{ grid-template-columns: 1fr; } }
+
+  /* ---------- HOW IT WORKS ---------- */
+  .steps{ display:flex; flex-direction:column; }
+  .step{
+    display:grid;
+    grid-template-columns: 64px 1fr;
+    gap: 24px;
+    padding: 28px 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .step:last-child{ border-bottom: 1px solid var(--hairline); }
+  .step-num{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--brass-bright);
+    padding-top: 4px;
+  }
+  .step h3{ font-size: 19px; font-weight: 500; margin-bottom: 6px; }
+  .step p{ color: var(--ivory-dim); font-size: 15px; max-width: 60ch; }
+
+  /* ---------- CLOSING CTA ---------- */
+  .closing{
+    text-align:center;
+    padding: 100px 0;
+  }
+  .closing h2{ font-size: clamp(30px, 4vw, 46px); max-width: 16ch; margin: 16px auto 28px; }
+  .closing .btn-row{ justify-content:center; }
+
+  footer{
+    border-top: 1px solid var(--hairline);
+    padding: 40px 0;
+  }
+  .foot-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .foot-row .wordmark{ font-size: 13px; }
+  .foot-links{ display:flex; gap: 28px; font-size: 13px; color: var(--ivory-dim); }
+  .foot-links a:hover{ color: var(--ivory); }
+  .foot-note{ font-size: 12px; color: var(--ivory-dim); margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="wordmark">FUND<span>·</span>LLC</div>
+    <nav class="nav-links">
+      <a href="#worlds">The three worlds</a>
+      <a href="#sides">For allocators &amp; strategists</a>
+      <a href="#how">How it works</a>
+    </nav>
+    <a class="nav-cta" href="#access">Request access</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="border-top:none;">
+    <div class="wrap" style="display:contents;">
+      <div>
+        <div class="eyebrow">A two-sided capital marketplace</div>
+        <h1>Time is the strategy.</h1>
+        <p>Fund LLC pools capital into three cadences — Day, Month, Year — so allocators can back institutional-grade strategies on the clock that fits them, and strategists can run real capital without founding a fund.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#access">Request access</a>
+          <a class="btn btn-secondary" href="#how">See how it works</a>
+        </div>
+      </div>
+
+      <div class="dial-wrap">
+        <svg viewBox="0 0 480 480" role="img" aria-label="A chronograph face with three sub-dials representing the Day, Month, and Year worlds">
+          <!-- outer bezel ticks -->
+          <g>
+            <!-- generated tick marks -->
+            <g id="ticks"></g>
+          </g>
+          <!-- main dial -->
+          <circle class="dial-ring" cx="240" cy="240" r="215"></circle>
+          <circle class="dial-face" cx="240" cy="240" r="196"></circle>
+
+          <!-- sub dial: YEAR (top) -->
+          <circle class="sub-face" cx="240" cy="150" r="52"></circle>
+          <circle class="dial-ring" cx="240" cy="150" r="52"></circle>
+          <text class="sub-label" x="240" y="185">YEAR</text>
+
+          <!-- sub dial: MONTH (lower left) -->
+          <circle class="sub-face" cx="163" cy="300" r="52"></circle>
+          <circle class="dial-ring" cx="163" cy="300" r="52"></circle>
+          <text class="sub-label" x="163" y="335">MONTH</text>
+
+          <!-- sub dial: DAY (lower right) -->
+          <circle class="sub-face" cx="317" cy="300" r="52"></circle>
+          <circle class="dial-ring" cx="317" cy="300" r="52"></circle>
+          <text class="sub-label" x="317" y="335">DAY</text>
+
+          <!-- hands -->
+          <g transform="translate(240,150)"><line class="hand hand-year" x1="0" y1="0" x2="0" y2="-36"></line></g>
+          <g transform="translate(163,300)"><line class="hand hand-month" x1="0" y1="0" x2="0" y2="-36"></line></g>
+          <g transform="translate(317,300)"><line class="hand hand-day" x1="0" y1="0" x2="0" y2="-36"></line></g>
+
+          <!-- main center hand -->
+          <g transform="translate(240,240)"><line class="hand hand-main" x1="0" y1="0" x2="0" y2="-172"></line></g>
+          <circle class="center-pin" cx="240" cy="240" r="5"></circle>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section id="worlds">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">The three worlds</div>
+        <h2>Every strategy runs on a cadence. Pick yours.</h2>
+        <p>Fund LLC doesn't sort capital by asset class first — it sorts by how long you're willing to wait for it back. Each world is its own pool, its own clock, its own community of allocators and strategists.</p>
+      </div>
+
+      <div class="worlds">
+        <div class="world-card day">
+          <svg class="world-icon" viewBox="0 0 52 52"><circle cx="26" cy="26" r="24" fill="none" stroke="var(--day)" stroke-width="2"/><line x1="26" y1="26" x2="26" y2="12" stroke="var(--day)" stroke-width="2" stroke-linecap="round"/><line x1="26" y1="26" x2="35" y2="26" stroke="var(--day)" stroke-width="2" stroke-linecap="round"/></svg>
+          <div class="cadence">Day / Day</div>
+          <h3>Positions open and close inside a session</h3>
+          <p>For allocators who want liquidity by nightfall, and strategists who trade the clock rather than the calendar.</p>
+        </div>
+        <div class="world-card month">
+          <svg class="world-icon" viewBox="0 0 52 52"><rect x="6" y="10" width="40" height="34" rx="2" fill="none" stroke="var(--month)" stroke-width="2"/><line x1="6" y1="20" x2="46" y2="20" stroke="var(--month)" stroke-width="2"/><line x1="16" y1="6" x2="16" y2="14" stroke="var(--month)" stroke-width="2" stroke-linecap="round"/><line x1="36" y1="6" x2="36" y2="14" stroke="var(--month)" stroke-width="2" stroke-linecap="round"/></svg>
+          <div class="cadence">Month / Month</div>
+          <h3>Capital commits for a full cycle</h3>
+          <p>Built for strategies that need weeks to prove a thesis, and allocators comfortable stepping back monthly.</p>
+        </div>
+        <div class="world-card year">
+          <svg class="world-icon" viewBox="0 0 52 52"><circle cx="26" cy="26" r="6" fill="none" stroke="var(--year)" stroke-width="2"/><ellipse cx="26" cy="26" rx="22" ry="9" fill="none" stroke="var(--year)" stroke-width="2"/><circle cx="26" cy="17" r="2.5" fill="var(--year)"/></svg>
+          <div class="cadence">Year / Year</div>
+          <h3>Long-horizon capital for long-horizon conviction</h3>
+          <p>The world for strategies that compound quietly, and allocators playing the long game.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sides">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Two sides, one marketplace</div>
+        <h2>Bring capital, or bring an edge.</h2>
+        <p>Fund LLC exists between the two people who used to need a whole fund structure to find each other.</p>
+      </div>
+
+      <div class="sides">
+        <div class="side-card">
+          <svg viewBox="0 0 40 40"><circle cx="20" cy="14" r="9" fill="none" stroke="var(--brass-bright)" stroke-width="2"/><circle cx="20" cy="24" r="9" fill="none" stroke="var(--brass-bright)" stroke-width="2" opacity="0.6"/><circle cx="20" cy="34" r="0" /></svg>
+          <h3>For allocators</h3>
+          <p>Pool capital alongside other allocators into a world that matches your horizon. Track performance openly, withdraw on the world's own schedule, and skip the minimums that usually keep institutional strategies out of reach.</p>
+          <a class="link" href="#access">Join a world →</a>
+        </div>
+        <div class="side-card">
+          <svg viewBox="0 0 40 40"><path d="M20 4 L34 12 V28 L20 36 L6 28 V12 Z" fill="none" stroke="var(--brass-bright)" stroke-width="2"/><circle cx="20" cy="20" r="5" fill="none" stroke="var(--brass-bright)" stroke-width="2"/></svg>
+          <h3>For strategists</h3>
+          <p>Bring a strategy, not a fund. Fund LLC handles the capital pooling, the reporting, the operations. You bring the edge and run it against real allocator capital inside the world it belongs in.</p>
+          <a class="link" href="#access">Propose a strategy →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">How it works</div>
+        <h2>One cycle, start to finish.</h2>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div><h3>Pick a world</h3><p>Choose the cadence that matches your capital or your strategy: Day, Month, or Year.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div><h3>Capital pools</h3><p>Allocators commit into the world, and strategists get a funded book to run against.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div><h3>The clock runs</h3><p>Positions play out on the world's cadence, tracked openly for every allocator the whole time.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div><h3>Settle and repeat</h3><p>Returns distribute on schedule, and capital rolls into the next cycle — or moves to a different world entirely.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="access" class="closing" style="border-top: 1px solid var(--hairline);">
+    <div class="wrap">
+      <div class="eyebrow">Request access</div>
+      <h2>Find the world that runs on your clock.</h2>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="mailto:hello@fundllc.com">Request access</a>
+        <a class="btn btn-secondary" href="#worlds">Compare the worlds</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <div class="wordmark">FUND<span>·</span>LLC</div>
+      <div class="foot-links">
+        <a href="#worlds">Worlds</a>
+        <a href="#sides">Allocators &amp; strategists</a>
+        <a href="#how">How it works</a>
+      </div>
+    </div>
+    <div class="foot-note">Fund LLC pools capital across Day, Month, and Year cadences. Not investment advice.</div>
+  </div>
+</footer>
+
+<script>
+  // draw bezel ticks around the hero chronograph
+  (function(){
+    const ns = "http://www.w3.org/2000/svg";
+    const ticksGroup = document.getElementById('ticks');
+    const cx = 240, cy = 240, rOuter = 215, rInnerMinor = 202, rInnerMajor = 196;
+    for (let i = 0; i < 60; i++){
+      const angle = (i / 60) * Math.PI * 2 - Math.PI/2;
+      const major = i % 5 === 0;
+      const rInner = major ? rInnerMajor : rInnerMinor;
+      const x1 = cx + rOuter * Math.cos(angle);
+      const y1 = cy + rOuter * Math.sin(angle);
+      const x2 = cx + rInner * Math.cos(angle);
+      const y2 = cy + rInner * Math.sin(angle);
+      const line = document.createElementNS(ns, 'line');
+      line.setAttribute('x1', x1.toFixed(2));
+      line.setAttribute('y1', y1.toFixed(2));
+      line.setAttribute('x2', x2.toFixed(2));
+      line.setAttribute('y2', y2.toFixed(2));
+      line.setAttribute('class', major ? 'bezel-tick major' : 'bezel-tick');
+      ticksGroup.appendChild(line);
+    }
+  })();
+</script>
+
+</body>
+</html>
