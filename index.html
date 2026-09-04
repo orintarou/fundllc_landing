@@ -300,7 +300,20 @@
     border-bottom: 1px solid var(--hairline);
   }
   .frame-dot{ width: 9px; height:9px; border-radius:50%; background: var(--hairline-strong); }
-  .video-frame video{ display:block; width:100%; height:auto; background:#000; }
+  .video-stage{
+    background: var(--bg);
+    padding: 28px;
+    display:flex;
+    justify-content:center;
+  }
+  .video-stage video{
+    display:block;
+    width:100%;
+    max-width: 820px;
+    height:auto;
+    border-radius: 4px;
+    background:#000;
+  }
   .video-caption{
     font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
@@ -313,15 +326,35 @@
     display:grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
+    align-items: start;
   }
   .shot-card{
     background: var(--panel);
     border: 1px solid var(--hairline-strong);
     border-radius: 8px;
     overflow: hidden;
+    display:flex;
+    flex-direction: column;
+    height: 100%;
   }
-  .shot-card img{ display:block; width:100%; height:auto; }
-  .shot-caption{ padding: 16px 18px 20px; }
+  .shot-frame{
+    background: var(--bg);
+    padding: 28px;
+    height: 300px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .shot-frame img{
+    display:block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+  .shot-caption{ padding: 18px 20px 22px; margin-top: auto; }
   .shot-caption .tag{
     font-family: 'IBM Plex Mono', monospace;
     font-size: 11px;
@@ -334,10 +367,11 @@
   .shot-caption p{ font-size: 14px; color: var(--ivory-dim); }
 
   .shot-card.wide{ grid-column: 1 / -1; }
-  .shot-card.wide img{ max-height: 480px; object-fit: cover; object-position: top; }
+  .shot-card.wide .shot-frame{ height: 420px; }
 
   @media (max-width: 720px){
     .shot-grid{ grid-template-columns: 1fr; }
+    .shot-frame{ height: 260px; padding: 20px; }
   }
 </style>
 </head>
@@ -527,44 +561,46 @@
 
       <div class="video-frame">
         <div class="frame-bar"><span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span></div>
-        <video controls preload="metadata" playsinline>
-          <source src="product-walkthrough.mov">
-          Your browser can't play this video file directly — open product-walkthrough.mov from the media folder instead.
-        </video>
+        <div class="video-stage">
+          <video controls preload="metadata" playsinline>
+            <source src="product-walkthrough.mov">
+            Your browser can't play this video file directly — open product-walkthrough.mov instead.
+          </video>
+        </div>
       </div>
       <div class="video-caption">A walkthrough of the visitor → match → fund flow</div>
 
       <div class="shot-grid" style="margin-top: 48px;">
         <div class="shot-card">
-          <img src="visitor-investor-select.png" alt="Fund LLC role selection screen: Visitor or Investor">
+          <div class="shot-frame"><img src="visitor-investor-select.png" alt="Fund LLC role selection screen: Visitor or Investor"></div>
           <div class="shot-caption">
             <span class="tag">Two ways in</span>
             <p>Visitors back a fund managed by a proven investor. Investors with a track record open their fund to the public.</p>
           </div>
         </div>
         <div class="shot-card">
-          <img src="find-your-investor.png" alt="Find your investor screen with an AI agent text box">
+          <div class="shot-frame"><img src="find-your-investor.png" alt="Find your investor screen with an AI agent text box"></div>
           <div class="shot-caption">
             <span class="tag">Visitor agent</span>
             <p>Describe what you're looking for in plain language — the agent matches you to a fund, not the other way around.</p>
           </div>
         </div>
         <div class="shot-card">
-          <img src="describe-your-strategy.png" alt="Describe your strategy screen with an AI agent text box">
+          <div class="shot-frame"><img src="describe-your-strategy.png" alt="Describe your strategy screen with an AI agent text box"></div>
           <div class="shot-caption">
             <span class="tag">Investor agent</span>
             <p>A proven trader describes their strategy and track record once. The agent turns it into a fund profile automatically.</p>
           </div>
         </div>
         <div class="shot-card">
-          <img src="strong-match-card.png" alt="A strong match card showing Two Sigma with performance stats and a plain-language reason">
+          <div class="shot-frame"><img src="strong-match-card.png" alt="A strong match card showing Two Sigma with performance stats and a plain-language reason"></div>
           <div class="shot-caption">
             <span class="tag">The match, explained</span>
             <p>Every match comes with a plain-language "why" — not just a score.</p>
           </div>
         </div>
         <div class="shot-card wide">
-          <img src="fund-detail-two-sigma.png" alt="Fund detail page for Two Sigma showing Day, Month, and Year performance, strategy, and fund capacity">
+          <div class="shot-frame"><img src="fund-detail-two-sigma.png" alt="Fund detail page for Two Sigma showing Day, Month, and Year performance, strategy, and fund capacity"></div>
           <div class="shot-caption">
             <span class="tag">Fund detail</span>
             <p>Every fund's Day, Month, and Year performance, strategy, and remaining capacity, in one place — with a single "join this fund" step.</p>
