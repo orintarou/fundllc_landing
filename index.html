@@ -283,6 +283,62 @@
   .foot-links{ display:flex; gap: 28px; font-size: 13px; color: var(--ivory-dim); }
   .foot-links a:hover{ color: var(--ivory); }
   .foot-note{ font-size: 12px; color: var(--ivory-dim); margin-top: 20px; }
+
+  /* ---------- PRODUCT GALLERY ---------- */
+  .video-frame{
+    background: var(--panel);
+    border: 1px solid var(--hairline-strong);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 40px;
+  }
+  .frame-bar{
+    display:flex;
+    align-items:center;
+    gap: 6px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .frame-dot{ width: 9px; height:9px; border-radius:50%; background: var(--hairline-strong); }
+  .video-frame video{ display:block; width:100%; height:auto; background:#000; }
+  .video-caption{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ivory-dim);
+    text-align:center;
+    margin-top: 14px;
+  }
+
+  .shot-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .shot-card{
+    background: var(--panel);
+    border: 1px solid var(--hairline-strong);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .shot-card img{ display:block; width:100%; height:auto; }
+  .shot-caption{ padding: 16px 18px 20px; }
+  .shot-caption .tag{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brass-bright);
+    display:block;
+    margin-bottom: 6px;
+  }
+  .shot-caption p{ font-size: 14px; color: var(--ivory-dim); }
+
+  .shot-card.wide{ grid-column: 1 / -1; }
+  .shot-card.wide img{ max-height: 480px; object-fit: cover; object-position: top; }
+
+  @media (max-width: 720px){
+    .shot-grid{ grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -291,11 +347,12 @@
   <div class="wrap nav">
     <div class="wordmark">FUND<span>·</span>LLC</div>
     <nav class="nav-links">
+      <a href="#aggregation">Why aggregation</a>
       <a href="#worlds">The three worlds</a>
-      <a href="#sides">For allocators &amp; strategists</a>
-      <a href="#how">How it works</a>
+      <a href="#product">Inside the platform</a>
+      <a href="#sides">Partner or invest</a>
     </nav>
-    <a class="nav-cta" href="#access">Request access</a>
+    <a class="nav-cta" href="#access">Partner with us</a>
   </div>
 </header>
 
@@ -303,12 +360,12 @@
   <section class="hero" style="border-top:none;">
     <div class="wrap" style="display:contents;">
       <div>
-        <div class="eyebrow">A two-sided capital marketplace</div>
-        <h1>Time is the strategy.</h1>
-        <p>Fund LLC pools capital into three cadences — Day, Month, Year — so allocators can back institutional-grade strategies on the clock that fits them, and strategists can run real capital without founding a fund.</p>
+        <div class="eyebrow">Democratizing finance, together</div>
+        <h1>The capital floor, removed.</h1>
+        <p>Portfolio managers set minimums most people can't clear alone. Fund LLC aggregates everyday capital until it does — so investment platforms can put real, professionally run strategies in front of their entire user base, not just the accredited few.</p>
         <div class="btn-row">
-          <a class="btn btn-primary" href="#access">Request access</a>
-          <a class="btn btn-secondary" href="#how">See how it works</a>
+          <a class="btn btn-primary" href="#access">Partner with us</a>
+          <a class="btn btn-secondary" href="#worlds">Invest directly</a>
         </div>
       </div>
 
@@ -351,32 +408,55 @@
     </div>
   </section>
 
+  <section id="aggregation">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">The actual innovation</div>
+        <h2>One pool clears the bar. One person alone rarely does.</h2>
+        <p>Successful hedge funds and portfolio managers have historically served high-net-worth individuals almost exclusively — not because everyday capital isn't welcome, but because it arrives too small and too scattered to be worth the paperwork. Fund LLC exists to close that gap from both directions.</p>
+      </div>
+
+      <div class="sides" style="margin-bottom: 0;">
+        <div class="side-card">
+          <svg viewBox="0 0 40 40"><circle cx="14" cy="12" r="4" fill="none" stroke="var(--brass-bright)" stroke-width="2"/><circle cx="26" cy="12" r="4" fill="none" stroke="var(--brass-bright)" stroke-width="2"/><circle cx="20" cy="24" r="4" fill="none" stroke="var(--brass-bright)" stroke-width="2"/><path d="M14 16 L20 20 M26 16 L20 20" stroke="var(--brass-bright)" stroke-width="2"/><circle cx="20" cy="32" r="6" fill="none" stroke="var(--brass-bright)" stroke-width="2"/><line x1="20" y1="28" x2="20" y2="24" stroke="var(--brass-bright)" stroke-width="2"/></svg>
+          <h3>For everyday investors</h3>
+          <p>Your capital pools with everyone else's in a world until, together, it clears the minimum a portfolio manager sets. You get in at a scale you could never reach alone — the platform handles the aggregation, you just show up.</p>
+        </div>
+        <div class="side-card">
+          <svg viewBox="0 0 40 40"><path d="M6 30 L14 18 L22 24 L34 8" fill="none" stroke="var(--brass-bright)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="34" cy="8" r="3" fill="var(--brass-bright)"/></svg>
+          <h3>For proven investors</h3>
+          <p>A strong track record used to mean founding a fund before you could take on outside capital. On Fund LLC, a successful investor can onboard capital, and interested investors, in direct proportion to that record — no fund required.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="worlds">
     <div class="wrap">
       <div class="section-head">
         <div class="eyebrow">The three worlds</div>
-        <h2>Every strategy runs on a cadence. Pick yours.</h2>
-        <p>Fund LLC doesn't sort capital by asset class first — it sorts by how long you're willing to wait for it back. Each world is its own pool, its own clock, its own community of allocators and strategists.</p>
+        <h2>Every world is a different reason to say yes.</h2>
+        <p>Fund LLC doesn't sort capital by asset class first — it sorts by why someone is willing to put money in and what they need back, and when. Each world is its own pool, its own clock, its own community of investors and managers.</p>
       </div>
 
       <div class="worlds">
         <div class="world-card day">
           <svg class="world-icon" viewBox="0 0 52 52"><circle cx="26" cy="26" r="24" fill="none" stroke="var(--day)" stroke-width="2"/><line x1="26" y1="26" x2="26" y2="12" stroke="var(--day)" stroke-width="2" stroke-linecap="round"/><line x1="26" y1="26" x2="35" y2="26" stroke="var(--day)" stroke-width="2" stroke-linecap="round"/></svg>
           <div class="cadence">Day / Day</div>
-          <h3>Positions open and close inside a session</h3>
-          <p>For allocators who want liquidity by nightfall, and strategists who trade the clock rather than the calendar.</p>
+          <h3>Quick returns, for the risk you're willing to take on trust</h3>
+          <p>Day trading draws people in on speed alone. Fund LLC adds a reason to trust it: back a manager once their track record has already proven itself, not before.</p>
         </div>
         <div class="world-card month">
           <svg class="world-icon" viewBox="0 0 52 52"><rect x="6" y="10" width="40" height="34" rx="2" fill="none" stroke="var(--month)" stroke-width="2"/><line x1="6" y1="20" x2="46" y2="20" stroke="var(--month)" stroke-width="2"/><line x1="16" y1="6" x2="16" y2="14" stroke="var(--month)" stroke-width="2" stroke-linecap="round"/><line x1="36" y1="6" x2="36" y2="14" stroke="var(--month)" stroke-width="2" stroke-linecap="round"/></svg>
           <div class="cadence">Month / Month</div>
-          <h3>Capital commits for a full cycle</h3>
-          <p>Built for strategies that need weeks to prove a thesis, and allocators comfortable stepping back monthly.</p>
+          <h3>Returns you can plan a life around</h3>
+          <p>For the investor thinking about rent, not retirement. Once a manager's record earns your confidence, Month/Month turns that confidence into income you can count on showing up.</p>
         </div>
         <div class="world-card year">
           <svg class="world-icon" viewBox="0 0 52 52"><circle cx="26" cy="26" r="6" fill="none" stroke="var(--year)" stroke-width="2"/><ellipse cx="26" cy="26" rx="22" ry="9" fill="none" stroke="var(--year)" stroke-width="2"/><circle cx="26" cy="17" r="2.5" fill="var(--year)"/></svg>
           <div class="cadence">Year / Year</div>
-          <h3>Long-horizon capital for long-horizon conviction</h3>
-          <p>The world for strategies that compound quietly, and allocators playing the long game.</p>
+          <h3>An easy, reliable way in for capital that usually sits still</h3>
+          <p>Built for larger institutions that don't traditionally invest their capital at all. Low-touch, dependable, and designed to be the simplest "yes" they've been offered.</p>
         </div>
       </div>
     </div>
@@ -385,23 +465,25 @@
   <section id="sides">
     <div class="wrap">
       <div class="section-head">
-        <div class="eyebrow">Two sides, one marketplace</div>
-        <h2>Bring capital, or bring an edge.</h2>
-        <p>Fund LLC exists between the two people who used to need a whole fund structure to find each other.</p>
+        <div class="eyebrow">Two ways to work with us</div>
+        <h2>Built to plug in. Built to stand alone.</h2>
+        <p>The aggregated capital system is the product — whether it reaches people through a platform's existing user base, or directly.</p>
       </div>
 
       <div class="sides">
-        <div class="side-card">
-          <svg viewBox="0 0 40 40"><circle cx="20" cy="14" r="9" fill="none" stroke="var(--brass-bright)" stroke-width="2"/><circle cx="20" cy="24" r="9" fill="none" stroke="var(--brass-bright)" stroke-width="2" opacity="0.6"/><circle cx="20" cy="34" r="0" /></svg>
-          <h3>For allocators</h3>
-          <p>Pool capital alongside other allocators into a world that matches your horizon. Track performance openly, withdraw on the world's own schedule, and skip the minimums that usually keep institutional strategies out of reach.</p>
-          <a class="link" href="#access">Join a world →</a>
+        <div class="side-card" style="border-top: 2px solid var(--brass-bright);">
+          <svg viewBox="0 0 40 40"><rect x="4" y="16" width="10" height="10" rx="1" fill="none" stroke="var(--brass-bright)" stroke-width="2"/><rect x="26" y="16" width="10" height="10" rx="1" fill="none" stroke="var(--brass-bright)" stroke-width="2"/><path d="M14 21 H26" stroke="var(--brass-bright)" stroke-width="2"/><circle cx="20" cy="21" r="2" fill="var(--brass-bright)"/></svg>
+          <div class="cadence" style="color:var(--brass-bright);">Primary path — B2B</div>
+          <h3>Partner with a platform</h3>
+          <p>Investment platforms like Kalshi and Robinhood already have the users; they don't have an easy way to hand those users' pooled capital to a real portfolio manager. Fund LLC is that layer — a plug-in aggregated capital system that lets a platform put professionally run strategies in front of everyone it serves, not just accredited accounts.</p>
+          <a class="link" href="#access">Talk to us about partnering →</a>
         </div>
         <div class="side-card">
-          <svg viewBox="0 0 40 40"><path d="M20 4 L34 12 V28 L20 36 L6 28 V12 Z" fill="none" stroke="var(--brass-bright)" stroke-width="2"/><circle cx="20" cy="20" r="5" fill="none" stroke="var(--brass-bright)" stroke-width="2"/></svg>
-          <h3>For strategists</h3>
-          <p>Bring a strategy, not a fund. Fund LLC handles the capital pooling, the reporting, the operations. You bring the edge and run it against real allocator capital inside the world it belongs in.</p>
-          <a class="link" href="#access">Propose a strategy →</a>
+          <svg viewBox="0 0 40 40"><circle cx="20" cy="14" r="9" fill="none" stroke="var(--brass-bright)" stroke-width="2"/><circle cx="20" cy="24" r="9" fill="none" stroke="var(--brass-bright)" stroke-width="2" opacity="0.6"/></svg>
+          <div class="cadence" style="color:var(--ivory-dim);">Fallback path — B2C</div>
+          <h3>Invest directly, today</h3>
+          <p>If a platform partnership isn't in place yet, the mission doesn't wait. Fund LLC works standalone: join a world, pool capital alongside other everyday investors, and get access to strategies that have historically been reserved for high-net-worth clients of successful hedge funds.</p>
+          <a class="link" href="#worlds">Join a world →</a>
         </div>
       </div>
     </div>
@@ -435,13 +517,70 @@
     </div>
   </section>
 
+  <section id="product">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Inside the platform</div>
+        <h2>Two agents do the matching so no one has to read a prospectus.</h2>
+        <p>Investors describe their track record in plain English and get a fund profile back. Visitors describe what they want and get matched to a fund, with the reasoning shown, not hidden.</p>
+      </div>
+
+      <div class="video-frame">
+        <div class="frame-bar"><span class="frame-dot"></span><span class="frame-dot"></span><span class="frame-dot"></span></div>
+        <video controls preload="metadata" playsinline>
+          <source src="media/product-walkthrough.mov">
+          Your browser can't play this video file directly — open product-walkthrough.mov from the media folder instead.
+        </video>
+      </div>
+      <div class="video-caption">A walkthrough of the visitor → match → fund flow</div>
+
+      <div class="shot-grid" style="margin-top: 48px;">
+        <div class="shot-card">
+          <img src="media/visitor-investor-select.png" alt="Fund LLC role selection screen: Visitor or Investor">
+          <div class="shot-caption">
+            <span class="tag">Two ways in</span>
+            <p>Visitors back a fund managed by a proven investor. Investors with a track record open their fund to the public.</p>
+          </div>
+        </div>
+        <div class="shot-card">
+          <img src="media/find-your-investor.png" alt="Find your investor screen with an AI agent text box">
+          <div class="shot-caption">
+            <span class="tag">Visitor agent</span>
+            <p>Describe what you're looking for in plain language — the agent matches you to a fund, not the other way around.</p>
+          </div>
+        </div>
+        <div class="shot-card">
+          <img src="media/describe-your-strategy.png" alt="Describe your strategy screen with an AI agent text box">
+          <div class="shot-caption">
+            <span class="tag">Investor agent</span>
+            <p>A proven trader describes their strategy and track record once. The agent turns it into a fund profile automatically.</p>
+          </div>
+        </div>
+        <div class="shot-card">
+          <img src="media/strong-match-card.png" alt="A strong match card showing Two Sigma with performance stats and a plain-language reason">
+          <div class="shot-caption">
+            <span class="tag">The match, explained</span>
+            <p>Every match comes with a plain-language "why" — not just a score.</p>
+          </div>
+        </div>
+        <div class="shot-card wide">
+          <img src="media/fund-detail-two-sigma.png" alt="Fund detail page for Two Sigma showing Day, Month, and Year performance, strategy, and fund capacity">
+          <div class="shot-caption">
+            <span class="tag">Fund detail</span>
+            <p>Every fund's Day, Month, and Year performance, strategy, and remaining capacity, in one place — with a single "join this fund" step.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="access" class="closing" style="border-top: 1px solid var(--hairline);">
     <div class="wrap">
-      <div class="eyebrow">Request access</div>
-      <h2>Find the world that runs on your clock.</h2>
+      <div class="eyebrow">Democratizing finance, together</div>
+      <h2>Bring us your users, or bring us yourself.</h2>
       <div class="btn-row">
-        <a class="btn btn-primary" href="mailto:hello@fundllc.com">Request access</a>
-        <a class="btn btn-secondary" href="#worlds">Compare the worlds</a>
+        <a class="btn btn-primary" href="mailto:partnerships@fundllc.com">Partner with us</a>
+        <a class="btn btn-secondary" href="mailto:hello@fundllc.com">Request access as an investor</a>
       </div>
     </div>
   </section>
